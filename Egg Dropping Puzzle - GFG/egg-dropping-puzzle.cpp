@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    int solve(int n, int k, vector<vector<int>>& output) {
+   int solve(int n, int k, vector<vector<int>>& output) {
         if (n == 1) {
             return k;
         }
@@ -17,8 +17,22 @@ public:
             return output[n][k];
         }
         int ans = INT_MAX;
+        int low = 0;
+        int height = 0;
         for (int f = 1; f <= k; f++) {
-            int tempans = 1 + max(solve(n - 1, f - 1, output), solve(n, k - f, output));
+            if (output[n - 1][f - 1] != -1) {
+                low = output[n - 1][f - 1];
+            } else {
+                low = solve(n - 1, f - 1, output);
+                output[n - 1][f - 1] = low;
+            }
+            if (output[n][k - f] != -1) {
+                height = output[n][k - f];
+            } else {
+                height = solve(n, k - f, output);
+                output[n][k - f] = height;
+            }
+            int tempans = 1 + max(low, height); 
             ans = min(ans, tempans);
         }
         output[n][k] = ans;
@@ -30,7 +44,6 @@ public:
         return solve(n, k, output);
     }
 };
-
 
 //{ Driver Code Starts.
 int main()
