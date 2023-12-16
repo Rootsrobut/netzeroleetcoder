@@ -15,7 +15,7 @@ public:
     while (byeIndex <= freeIndex) {
         minByeCost += candies[byeIndex];
         byeIndex++;
-        freeIndex = max(0, freeIndex - K);
+        freeIndex =freeIndex - K;
     }
     byeIndex = N - 1;
     freeIndex = 0;
@@ -23,7 +23,7 @@ public:
     while (byeIndex >= freeIndex) {
         maxByeCost += candies[byeIndex];
         byeIndex--;
-        freeIndex = min(N - 1, freeIndex + K);
+        freeIndex =freeIndex + K;
     }
     v.push_back(minByeCost);
     v.push_back(maxByeCost);
