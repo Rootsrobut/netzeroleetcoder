@@ -10,23 +10,22 @@ class Solution
     public:
     //Function to return the minimum cost of connecting the ropes.
     long long minCost(long long arr[], long long n) {
-        priority_queue<long long, vector<long long>, greater<long long>> mp;
-        for (int i = 0; i < n; i++) {
-            mp.push(arr[i]);
-        }
-        long long cost = 0;
-        while (mp.size() > 1) {
-            long long a = mp.top();
-            mp.pop();
-            long long b = mp.top();
-            mp.pop();
-            cost = cost + (a + b);
-            mp.push(a + b);
-        }
-        return cost;
+       priority_queue<long long, vector<long long>, greater<long long>> mp;
+       for(int i=0;i<n;i++){
+           mp.push(arr[i]);
+       }
+       long long  cost=0;
+       while(mp.size()>1){
+       long long a=mp.top();
+       mp.pop();
+       long long b=mp.top();
+       mp.pop();
+       cost=cost+(a+b);
+       mp.push(a+b);
+       }
+       return cost;
     }
 };
-
 
 //{ Driver Code Starts.
 
